@@ -1,0 +1,199 @@
+/**
+ * Jekwwer Design System (JDS) v0.0.0
+ * Generated from export/tokens.json — DO NOT EDIT.
+ * Edit tokens.json and run `npm run build` to regenerate.
+ */
+
+:root {
+  --jds-ink-0: #ffffff;
+  --jds-ink-25: #f7f8fa;
+  --jds-ink-50: #eef1f5;
+  --jds-ink-100: #d9dee5;
+  --jds-ink-200: #b4bdc9;
+  --jds-ink-300: #8591a0;
+  --jds-ink-400: #5a6675;
+  --jds-ink-500: #3b4654;
+  --jds-ink-600: #2d3743;
+  --jds-ink-700: #242c36;
+  --jds-ink-800: #1c232c;
+  --jds-ink-850: #161b22;
+  --jds-ink-900: #11161d;
+  --jds-ink-950: #0d1117;
+  --jds-red: #e06c75; /* Keywords, errors, danger */
+  --jds-red-light: #c53030; /* Darker variant for light-mode contrast */
+  --jds-green: #98c379; /* Strings, success, added */
+  --jds-green-light: #3d8c40; /* Darker variant for light-mode contrast */
+  --jds-yellow: #e5c07b; /* Classes, warnings, highlight */
+  --jds-yellow-light: #b8860b; /* Darker variant for light-mode contrast */
+  --jds-blue: #61afef; /* Functions, info, primary */
+  --jds-blue-light: #1e6bb8; /* Darker variant for light-mode contrast */
+  --jds-purple: #c678dd; /* Operators, special, accent */
+  --jds-purple-light: #8a3fa3; /* Darker variant for light-mode contrast */
+  --jds-cyan: #56b6c2; /* Built-ins, constants, info */
+  --jds-cyan-light: #0b7285; /* Darker variant for light-mode contrast */
+  --jds-orange: #d19a66; /* Numbers, parameters, attention */
+  --jds-orange-light: #b7410e; /* Darker variant for light-mode contrast */
+  --jds-font-sans: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --jds-font-mono: "Geist Mono", ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+  --jds-font-display: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --jds-fw-regular: 400;
+  --jds-fw-medium: 500;
+  --jds-fw-semibold: 600;
+  --jds-fw-bold: 700;
+  --jds-fs-xs: 12px;
+  --jds-fs-sm: 13px;
+  --jds-fs-base: 15px;
+  --jds-fs-md: 17px;
+  --jds-fs-lg: 20px;
+  --jds-fs-xl: 24px;
+  --jds-fs-2xl: 30px;
+  --jds-fs-3xl: 38px;
+  --jds-fs-4xl: 48px;
+  --jds-fs-5xl: 60px;
+  --jds-fs-6xl: 76px;
+  --jds-lh-tight: 1.15;
+  --jds-lh-snug: 1.35;
+  --jds-lh-normal: 1.55;
+  --jds-lh-code: 1.65;
+  --jds-ls-display: -0.02em;
+  --jds-ls-tight: -0.01em;
+  --jds-ls-normal: 0;
+  --jds-ls-mono-kbd: 0.02em;
+  --jds-space-0: 0;
+  --jds-space-1: 4px;
+  --jds-space-2: 8px;
+  --jds-space-3: 12px;
+  --jds-space-4: 16px;
+  --jds-space-5: 20px;
+  --jds-space-6: 24px;
+  --jds-space-7: 32px;
+  --jds-space-8: 40px;
+  --jds-space-9: 48px;
+  --jds-space-10: 64px;
+  --jds-space-11: 80px;
+  --jds-space-12: 96px;
+  --jds-radius-xs: 3px;
+  --jds-radius-sm: 4px;
+  --jds-radius-md: 6px;
+  --jds-radius-lg: 8px;
+  --jds-radius-xl: 12px;
+  --jds-radius-full: 9999px;
+  --jds-border-width: 1px;
+  --jds-z-base: 0;
+  --jds-z-raised: 10;
+  --jds-z-sticky: 100;
+  --jds-z-overlay: 1000;
+  --jds-z-modal: 1100;
+  --jds-z-toast: 1200;
+  --jds-z-tooltip: 1300;
+  --jds-dur-instant: 80ms;
+  --jds-dur-fast: 140ms;
+  --jds-dur-base: 220ms;
+  --jds-dur-slow: 360ms;
+  --jds-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --jds-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --jds-bp-sm: 640px;
+  --jds-bp-md: 768px;
+  --jds-bp-lg: 1024px;
+  --jds-bp-xl: 1280px;
+  --jds-bp-2xl: 1440px;
+  --jds-layout-container-max: 1440px;
+  --jds-layout-content-max: 820px;
+  --jds-layout-sidebar-width: 260px;
+  --jds-layout-toc-width: 220px;
+  --jds-layout-header-height: 56px;
+  --jds-layout-tap-target-min: 32px;
+}
+
+:root,
+[data-theme="dark"] {
+  --jds-bg: #0d1117;
+  --jds-bg-raised: #11161d; /* Cards, panels, headers */
+  --jds-bg-sunken: #090d13; /* Code blocks, wells */
+  --jds-bg-hover: #1c232c;
+  --jds-bg-active: #242c36;
+  --jds-bg-selected: rgba(97, 175, 239, 0.14); /* Selection highlight */
+  --jds-fg1: #eef1f5; /* Primary content */
+  --jds-fg2: #b4bdc9; /* Secondary content */
+  --jds-fg3: #8591a0; /* Tertiary / labels */
+  --jds-fg4: #5a6675; /* Disabled / very low contrast */
+  --jds-fg-inverse: #0d1117; /* Foreground on bright accent surfaces */
+  --jds-border: #242c36;
+  --jds-border-strong: #3b4654;
+  --jds-border-subtle: #1c232c;
+  --jds-border-focus: #61afef;
+  --jds-accent-primary: #61afef;
+  --jds-accent-primary-bg: rgba(97, 175, 239, 0.12);
+  --jds-accent-success: #98c379;
+  --jds-accent-success-bg: rgba(152, 195, 121, 0.12);
+  --jds-accent-warning: #e5c07b;
+  --jds-accent-warning-bg: rgba(229, 192, 123, 0.12);
+  --jds-accent-danger: #e06c75;
+  --jds-accent-danger-bg: rgba(224, 108, 117, 0.12);
+  --jds-accent-info: #56b6c2;
+  --jds-accent-info-bg: rgba(86, 182, 194, 0.12);
+  --jds-accent-special: #c678dd;
+  --jds-accent-special-bg: rgba(198, 120, 221, 0.12);
+  --jds-syntax-keyword: #e06c75;
+  --jds-syntax-string: #98c379;
+  --jds-syntax-number: #d19a66;
+  --jds-syntax-function: #61afef;
+  --jds-syntax-class: #e5c07b;
+  --jds-syntax-operator: #c678dd;
+  --jds-syntax-builtin: #56b6c2;
+  --jds-syntax-comment: #5a6675;
+  --jds-syntax-punct: #b4bdc9;
+  --jds-scrollbar-thumb: #242c36;
+  --jds-scrollbar-track: rgba(0, 0, 0, 0);
+  --jds-shadow-sm: inset 0 1px 0 0 rgba(255, 255, 255, 0.03), 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --jds-shadow-md: inset 0 1px 0 0 rgba(255, 255, 255, 0.03), 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+  --jds-shadow-lg: inset 0 1px 0 0 rgba(255, 255, 255, 0.04), 0 16px 40px 0 rgba(0, 0, 0, 0.55);
+  --jds-shadow-focus: 0 0 0 3px rgba(97, 175, 239, 0.35);
+  --jds-shadow-focus-danger: 0 0 0 3px rgba(224, 108, 117, 0.35);
+}
+
+[data-theme="light"] {
+  --jds-bg: #ffffff;
+  --jds-bg-raised: #f7f8fa; /* Cards, panels, headers */
+  --jds-bg-sunken: #eef1f5; /* Code blocks, wells */
+  --jds-bg-hover: #eef1f5;
+  --jds-bg-active: #d9dee5;
+  --jds-bg-selected: rgba(30, 107, 184, 0.1); /* Selection highlight */
+  --jds-fg1: #0d1117; /* Primary content */
+  --jds-fg2: #2d3743; /* Secondary content */
+  --jds-fg3: #5a6675; /* Tertiary / labels */
+  --jds-fg4: #8591a0; /* Disabled / very low contrast */
+  --jds-fg-inverse: #ffffff; /* Foreground on bright accent surfaces */
+  --jds-border: #d9dee5;
+  --jds-border-strong: #b4bdc9;
+  --jds-border-subtle: #eef1f5;
+  --jds-border-focus: #1e6bb8;
+  --jds-accent-primary: #1e6bb8;
+  --jds-accent-primary-bg: rgba(30, 107, 184, 0.1);
+  --jds-accent-success: #3d8c40;
+  --jds-accent-success-bg: rgba(61, 140, 64, 0.1);
+  --jds-accent-warning: #b8860b;
+  --jds-accent-warning-bg: rgba(184, 134, 11, 0.12);
+  --jds-accent-danger: #c53030;
+  --jds-accent-danger-bg: rgba(197, 48, 48, 0.1);
+  --jds-accent-info: #0b7285;
+  --jds-accent-info-bg: rgba(11, 114, 133, 0.1);
+  --jds-accent-special: #8a3fa3;
+  --jds-accent-special-bg: rgba(138, 63, 163, 0.1);
+  --jds-syntax-keyword: #c53030;
+  --jds-syntax-string: #3d8c40;
+  --jds-syntax-number: #b7410e;
+  --jds-syntax-function: #1e6bb8;
+  --jds-syntax-class: #b8860b;
+  --jds-syntax-operator: #8a3fa3;
+  --jds-syntax-builtin: #0b7285;
+  --jds-syntax-comment: #8591a0;
+  --jds-syntax-punct: #2d3743;
+  --jds-scrollbar-thumb: #b4bdc9;
+  --jds-scrollbar-track: rgba(0, 0, 0, 0);
+  --jds-shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.06);
+  --jds-shadow-md: 0 4px 12px 0 rgba(15, 23, 42, 0.08);
+  --jds-shadow-lg: 0 16px 40px 0 rgba(15, 23, 42, 0.14);
+  --jds-shadow-focus: 0 0 0 3px rgba(30, 107, 184, 0.30);
+  --jds-shadow-focus-danger: 0 0 0 3px rgba(197, 48, 48, 0.30);
+}

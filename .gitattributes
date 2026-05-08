@@ -1,0 +1,60 @@
+# === File Classification ===
+
+# All files: auto-detect text and normalize line endings
+* text=auto
+
+# --- Text: JS / build configs ---
+*.js        text eol=lf
+*.cjs       text eol=lf
+*.mjs       text eol=lf
+*.jsx       text eol=lf
+
+# --- Text: web ---
+*.html      text eol=lf
+*.css       text eol=lf
+
+# --- Text: data / config ---
+*.json      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+
+# --- Text: docs ---
+*.md        text eol=lf
+*.txt       text eol=lf
+
+# --- Text: SVG (markup, hand-editable) ---
+*.svg       text eol=lf diff=html
+
+# --- Binary: fonts ---
+*.ttf       binary
+*.woff      binary
+*.woff2     binary
+
+# --- Binary: images ---
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.ico       binary
+
+# === Diff Behavior ===
+
+# Custom diff drivers (markup-aware hunk headers)
+*.json      diff=json
+
+# Suppress diffs (too noisy or not useful)
+*.log               -diff
+package-lock.json   -diff
+
+# === Metadata ===
+
+# --- GitHub linguist: generated outputs ---
+package-lock.json   linguist-generated
+dist/*              linguist-generated
+badges/*            linguist-generated
+
+# --- Export ignore (excluded from `git archive` source zips) ---
+# Tracked but internal working docs — not part of the public source archive.
+TODO.md             export-ignore
+HANDOFF.md          export-ignore

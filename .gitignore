@@ -1,0 +1,71 @@
+# ── Node ────────────────────────────────────────────────────────────────────
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+node_modules/
+
+# Tool caches
+.npm
+.stylelintcache
+
+# Output of `npm pack`
+*.tgz
+
+# ── Editors / OS ────────────────────────────────────────────────────────────
+# VSCode — track curated configs, ignore the rest
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains
+.idea/
+
+# vim / emacs
+*.swp
+*.swo
+*~
+
+# OS droppings
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VCS / patch artifacts
+*.orig
+*.rej
+
+# ── Secrets ─────────────────────────────────────────────────────────────────
+# Never commit. Whitelist a public example with `!.env.example` if added.
+.env*
+!.env.example
+!.env.template
+!.env.sample
+*.pem
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+id_ecdsa.pub
+*-private*.asc
+*-private*.gpg
+*-private*.key
+secrets/
+.secrets/
+
+# ── Misc ────────────────────────────────────────────────────────────────────
+# Generic tool cache dir
+.cache/
+
+# ── Tracked overrides ──────────────────────────────────────────────────────
+# `dist/` is committed (jsdelivr + GitHub Pages serve it directly)
+!dist/

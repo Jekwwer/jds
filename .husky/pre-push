@@ -1,0 +1,12 @@
+npm run build
+
+if ! git diff --quiet -- dist/ badges/; then
+  echo ""
+  echo "✗ dist/ or badges/ are stale — \`npm run build\` produced changes."
+  echo "  Stage and commit the rebuilt artifacts before pushing."
+  echo ""
+  git --no-pager diff --stat -- dist/ badges/
+  exit 1
+fi
+
+echo "✓ dist/ + badges/ match a fresh build"

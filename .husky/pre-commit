@@ -1,0 +1,4 @@
+npx lint-staged
+
+# Catches merge-conflict markers
+git diff --cached --check

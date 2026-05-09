@@ -1,0 +1,13 @@
+{
+  "singleQuote": true,
+  "printWidth": 88,
+  "proseWrap": "always",
+  "overrides": [
+    {
+      "files": ["*.md", "*.css", "*.html", "*.svg"],
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
+}

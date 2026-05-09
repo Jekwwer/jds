@@ -1,0 +1,34 @@
+{
+  "ignorePaths": [
+    "*.json",
+    "*.lock",
+    "*.toml",
+    "*.yaml",
+    "*.yml",
+    ".devcontainer/*",
+    ".editorconfig",
+    ".husky/*",
+    ".gitignore",
+    ".gitattributes",
+    ".markdownlintignore",
+    ".nvmrc",
+    ".prettierignore",
+    ".releaserc.cjs",
+    "CHANGELOG.md"
+  ],
+  "useGitignore": true,
+  "version": "0.2",
+  "dictionaries": ["css", "fonts", "fullstack", "node"],
+  "words": [
+    "autoplaying",
+    "bento",
+    "DTCG",
+    "Evgenii",
+    "Jekwwer",
+    "punct",
+    "releaserc",
+    "Shiliaev",
+    "wght",
+    "wordmark"
+  ]
+}

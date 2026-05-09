@@ -1,0 +1,179 @@
+/* @font-face + .jds-* utility classes + reset. Pairs with
+   dist/tokens.css. Load tokens FIRST, then this file. */
+
+/* ----- Fonts -------------------------------------------- */
+/* Variable Geist + Geist Mono loaded from local fonts/.
+   Paths are relative to this file (src/base.css → ../fonts/*). */
+@font-face {
+  font-family: 'Geist';
+  src: url('../fonts/Geist_wght_.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../fonts/GeistMono_wght_.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----- Semantic type slots ------------------------------ */
+/* Use these in UI, not raw --jds-fs-* vars. All slots ship with
+   `margin: 0`; consumers control spacing via --jds-space-*. */
+.jds-h1,
+.jds-h2,
+.jds-h3,
+.jds-h4,
+.jds-h5,
+.jds-display,
+.jds-p,
+.jds-body,
+.jds-lead,
+.jds-small,
+.jds-caption {
+  margin: 0;
+}
+
+.jds-h1,
+.jds-display {
+  font-family: var(--jds-font-display);
+  font-size: clamp(38px, 5vw, var(--jds-fs-5xl));
+  font-weight: var(--jds-fw-bold);
+  line-height: var(--jds-lh-tight);
+  letter-spacing: var(--jds-ls-display);
+  color: var(--jds-fg1);
+}
+
+.jds-h2 {
+  font-family: var(--jds-font-display);
+  font-size: var(--jds-fs-3xl);
+  font-weight: var(--jds-fw-semibold);
+  line-height: var(--jds-lh-tight);
+  letter-spacing: var(--jds-ls-tight);
+  color: var(--jds-fg1);
+}
+
+.jds-h3 {
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-2xl);
+  font-weight: var(--jds-fw-semibold);
+  line-height: var(--jds-lh-snug);
+  letter-spacing: var(--jds-ls-tight);
+  color: var(--jds-fg1);
+}
+
+.jds-h4 {
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-xl);
+  font-weight: var(--jds-fw-semibold);
+  line-height: var(--jds-lh-snug);
+  color: var(--jds-fg1);
+}
+
+.jds-h5 {
+  font-family: var(--jds-font-mono);
+  font-size: var(--jds-fs-sm);
+  font-weight: var(--jds-fw-medium);
+  line-height: var(--jds-lh-snug);
+  letter-spacing: var(--jds-ls-mono-kbd);
+  text-transform: uppercase;
+  color: var(--jds-fg3);
+}
+
+.jds-p,
+.jds-body {
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-base);
+  font-weight: var(--jds-fw-regular);
+  line-height: var(--jds-lh-normal);
+  color: var(--jds-fg2);
+}
+
+.jds-lead {
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-lg);
+  font-weight: var(--jds-fw-regular);
+  line-height: var(--jds-lh-normal);
+  color: var(--jds-fg2);
+}
+
+.jds-small,
+.jds-caption {
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-sm);
+  line-height: var(--jds-lh-snug);
+  color: var(--jds-fg3);
+}
+
+.jds-code,
+.jds-mono {
+  font-family: var(--jds-font-mono);
+  font-size: 0.9em;
+  font-weight: var(--jds-fw-regular);
+  font-feature-settings:
+    'calt' 1,
+    'liga' 1;
+}
+
+.jds-kbd {
+  font-family: var(--jds-font-mono);
+  font-size: var(--jds-fs-xs);
+  font-weight: var(--jds-fw-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--jds-ls-mono-kbd);
+  color: var(--jds-fg3);
+}
+
+.jds-label {
+  font-family: var(--jds-font-mono);
+  font-size: var(--jds-fs-xs);
+  font-weight: var(--jds-fw-medium);
+  letter-spacing: var(--jds-ls-mono-kbd);
+  text-transform: uppercase;
+  color: var(--jds-fg3);
+}
+
+/* ----- Base reset / defaults --------------------------- */
+html,
+body {
+  background: var(--jds-bg);
+  color: var(--jds-fg1);
+  font-family: var(--jds-font-sans);
+  font-size: var(--jds-fs-base);
+  line-height: var(--jds-lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--jds-accent-primary-bg);
+  color: var(--jds-fg1);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--jds-shadow-focus);
+  border-radius: var(--jds-radius-sm);
+}
+
+/* scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--jds-scrollbar-thumb) var(--jds-scrollbar-track);
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--jds-scrollbar-thumb);
+  border-radius: var(--jds-radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}

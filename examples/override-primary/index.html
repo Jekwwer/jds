@@ -1,0 +1,494 @@
+<!doctype html>
+<html data-theme="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JDS — Override Primary</title>
+
+    <!-- JDS, unmodified -->
+    <link rel="stylesheet" href="../../dist/tokens.css" />
+    <link rel="stylesheet" href="../../src/base.css" />
+
+    <style>
+      /* ----- Path A: semantic token override ---------------- */
+      /* The only code overriding JDS for a custom primary. JDS
+         itself is unchanged. Drop into any project's CSS — primary
+         swaps from blue → red.
+
+         Pattern works for any of the 7 JDS palette hues. Each ships
+         as --jds-<hue> (dark) and --jds-<hue>-light (light).
+
+         Tokens overridden: --jds-accent-primary,
+         --jds-accent-primary-bg, --jds-border-focus,
+         --jds-shadow-focus, --jds-syntax-function. */
+      :root,
+      [data-theme='dark'] {
+        --jds-accent-primary: var(--jds-red);
+        --jds-accent-primary-bg: rgba(224, 108, 117, 0.12);
+        --jds-border-focus: var(--jds-red);
+        --jds-shadow-focus: 0 0 0 3px rgba(224, 108, 117, 0.35);
+        --jds-syntax-function: var(--jds-red);
+      }
+      [data-theme='light'] {
+        --jds-accent-primary: var(--jds-red-light);
+        --jds-accent-primary-bg: rgba(197, 48, 48, 0.1);
+        --jds-border-focus: var(--jds-red-light);
+        --jds-shadow-focus: 0 0 0 3px rgba(197, 48, 48, 0.3);
+        --jds-syntax-function: var(--jds-red-light);
+      }
+
+      /* ----- Reset & layout ----------------------------------- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Inline only — :not(pre) excludes the multi-line <pre class="codeblock"> below. */
+      :not(pre) > code.jds-code {
+        white-space: nowrap;
+        background: var(--jds-bg-sunken);
+        border: 1px solid var(--jds-border-subtle);
+        border-radius: var(--jds-radius-xs);
+        padding: 1px 5px;
+        color: var(--jds-syntax-function);
+      }
+
+      body {
+        max-width: var(--jds-layout-content-max);
+        margin: 0 auto;
+        padding: var(--jds-space-7) var(--jds-space-6);
+      }
+
+      /* ----- Header & brand ----------------------------------- */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--jds-space-4);
+        padding-bottom: var(--jds-space-4);
+        border-bottom: 1px solid var(--jds-border);
+        margin-bottom: var(--jds-space-7);
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: var(--jds-space-3);
+      }
+      .wordmark-cluster {
+        display: inline-flex;
+        align-items: baseline;
+      }
+      .wordmark {
+        font-family: var(--jds-font-mono);
+        font-weight: var(--jds-fw-semibold);
+        font-size: var(--jds-fs-md);
+        letter-spacing: -0.02em;
+      }
+      .caret {
+        display: inline-block;
+        width: 5px;
+        height: 18px;
+        background: var(--jds-accent-primary);
+        margin-left: 2px;
+        transform: translateY(2px);
+        animation: hw-blink 1.1s ease-in-out infinite;
+      }
+      @keyframes hw-blink {
+        0%,
+        65% {
+          opacity: 1;
+        }
+        75%,
+        95% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .caret {
+          animation: none;
+        }
+      }
+
+      /* ----- Theme toggle ------------------------------------- */
+      .toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--jds-space-2);
+        background: transparent;
+        border: 1px solid var(--jds-border);
+        color: var(--jds-fg2);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        letter-spacing: 0.04em;
+        padding: var(--jds-space-2) var(--jds-space-3);
+        border-radius: var(--jds-radius-md);
+        cursor: pointer;
+        transition: all var(--jds-dur-fast) var(--jds-ease-out);
+      }
+      .toggle:hover {
+        background: var(--jds-bg-hover);
+        color: var(--jds-fg1);
+      }
+      .toggle:focus-visible {
+        outline: none;
+        box-shadow: var(--jds-shadow-focus);
+      }
+
+      /* ----- Sections ----------------------------------------- */
+      h1 + .jds-lead {
+        margin-top: var(--jds-space-3);
+      }
+      section {
+        margin-bottom: var(--jds-space-7);
+      }
+      section:first-of-type {
+        margin-top: var(--jds-space-7);
+      }
+
+      /* ----- Buttons ------------------------------------------ */
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--jds-space-2);
+        padding: var(--jds-space-2) var(--jds-space-4);
+        border-radius: var(--jds-radius-md);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-sm);
+        font-weight: var(--jds-fw-medium);
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all var(--jds-dur-fast) var(--jds-ease-out);
+      }
+      .button + .button {
+        margin-left: var(--jds-space-2);
+      }
+      .button:focus-visible {
+        outline: none;
+        box-shadow: var(--jds-shadow-focus);
+      }
+      .button-primary {
+        background: var(--jds-accent-primary);
+        color: var(--jds-fg-inverse);
+      }
+      .button-primary:hover {
+        filter: brightness(1.08);
+      }
+      .button-secondary {
+        background: var(--jds-bg-raised);
+        color: var(--jds-fg1);
+        border-color: var(--jds-border-strong);
+      }
+      .button-secondary:hover {
+        background: var(--jds-bg-hover);
+      }
+      .button-ghost {
+        background: transparent;
+        color: var(--jds-fg2);
+      }
+      .button-ghost:hover {
+        background: var(--jds-bg-hover);
+        color: var(--jds-fg1);
+      }
+
+      /* ----- Card --------------------------------------------- */
+      .card {
+        background: var(--jds-bg-raised);
+        border: 1px solid var(--jds-border);
+        border-radius: var(--jds-radius-lg);
+        padding: var(--jds-space-5);
+        box-shadow: var(--jds-shadow-sm);
+      }
+
+      /* ----- Palette grid ------------------------------------- */
+      .palette-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: var(--jds-space-2);
+      }
+      @media (max-width: 720px) {
+        .palette-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .palette-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .palette-chip {
+        display: flex;
+        flex-direction: column;
+        gap: var(--jds-space-2);
+        padding: var(--jds-space-3);
+        background: var(--jds-bg-raised);
+        border: 1px solid var(--jds-border);
+        border-radius: var(--jds-radius-md);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+      }
+      .palette-chip .swatch {
+        width: 100%;
+        height: 28px;
+        border-radius: var(--jds-radius-xs);
+      }
+      .palette-chip .name {
+        color: var(--jds-fg2);
+      }
+
+      /* ----- Code block --------------------------------------- */
+      .codeblock-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--jds-space-2) var(--jds-space-4);
+        background: var(--jds-bg-raised);
+        border: 1px solid var(--jds-border);
+        border-bottom: 0;
+        border-radius: var(--jds-radius-md) var(--jds-radius-md) 0 0;
+      }
+      .codeblock-bar + .codeblock {
+        border-radius: 0 0 var(--jds-radius-md) var(--jds-radius-md);
+      }
+
+      .codeblock {
+        background: var(--jds-bg-sunken);
+        border: 1px solid var(--jds-border);
+        border-radius: var(--jds-radius-md);
+        padding: var(--jds-space-4);
+        overflow-x: auto;
+        line-height: var(--jds-lh-code);
+      }
+
+      .lang-tag {
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        color: var(--jds-accent-primary);
+        background: var(--jds-accent-primary-bg);
+        padding: 1px 6px;
+        border-radius: var(--jds-radius-xs);
+      }
+
+      .copy-btn {
+        background: transparent;
+        border: 1px solid var(--jds-border);
+        color: var(--jds-fg2);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        font-weight: var(--jds-fw-medium);
+        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: var(--jds-radius-xs);
+        cursor: pointer;
+        transition: all var(--jds-dur-fast) var(--jds-ease-out);
+      }
+      .copy-btn:hover {
+        color: var(--jds-fg1);
+        border-color: var(--jds-border-strong);
+      }
+      .copy-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--jds-shadow-focus);
+      }
+      .copy-btn.is-copied {
+        color: var(--jds-accent-success);
+        border-color: color-mix(in srgb, var(--jds-accent-success) 50%, transparent);
+      }
+
+      .tk-keyword {
+        color: var(--jds-syntax-keyword);
+      }
+      .tk-string {
+        color: var(--jds-syntax-string);
+      }
+      .tk-function {
+        color: var(--jds-syntax-function);
+      }
+      .tk-comment {
+        color: var(--jds-syntax-comment);
+        font-style: italic;
+      }
+      .tk-punct {
+        color: var(--jds-syntax-punct);
+      }
+
+      .stack > * + * {
+        margin-top: var(--jds-space-3);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="wordmark-cluster"> <span class="wordmark">jds</span><span class="caret"></span> </span>
+        <span class="jds-label">override-primary</span>
+      </div>
+      <button class="toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <span id="theme-icon">☀</span>
+        <span id="theme-text">light</span>
+      </button>
+    </header>
+
+    <h1 class="jds-h1">Same JDS, in red.</h1>
+    <p class="jds-lead">
+      Five semantic tokens, two modes, zero patches to JDS. Cursor, primary button, focus ring, syntax 'function' — all
+      flip blue → red.
+    </p>
+
+    <section>
+      <span class="jds-label">Palette hues</span>
+      <div class="palette-grid" style="margin-top: var(--jds-space-3)">
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-red)"></div>
+          <span class="name">red</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-green)"></div>
+          <span class="name">green</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-yellow)"></div>
+          <span class="name">yellow</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-blue)"></div>
+          <span class="name">blue</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-purple)"></div>
+          <span class="name">purple</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-cyan)"></div>
+          <span class="name">cyan</span>
+        </div>
+        <div class="palette-chip">
+          <div class="swatch" style="background: var(--jds-orange)"></div>
+          <span class="name">orange</span>
+        </div>
+      </div>
+      <p class="jds-small" style="margin-top: var(--jds-space-3); color: var(--jds-fg3)">
+        Each pairs with a <code class="jds-code">-light</code> variant tuned for light mode.
+      </p>
+    </section>
+
+    <section>
+      <span class="jds-label">Demonstration</span>
+      <div class="card" style="margin-top: var(--jds-space-3)">
+        <h3 class="jds-h4" style="color: var(--jds-accent-primary)">Primary is now red</h3>
+        <p class="jds-p" style="margin-top: var(--jds-space-2)">
+          All five overridden tokens cascade down: button background, card title, focus ring, code "function" color, and
+          the cursor in the header.
+        </p>
+        <div style="margin-top: var(--jds-space-4)">
+          <button class="button button-primary">Run build</button>
+          <button class="button button-secondary">Cancel</button>
+          <button class="button button-ghost">Tab to me — focus ring is red →</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="jds-label">The override (drop into your project's CSS)</span>
+      <div style="margin-top: var(--jds-space-3)">
+        <div class="codeblock-bar">
+          <span
+            ><span class="lang-tag">css</span>
+            <span class="jds-code" style="color: var(--jds-fg3); margin-left: var(--jds-space-2)"
+              >· override.css</span
+            ></span
+          >
+          <button class="copy-btn" data-copy-target="#code-override" aria-label="Copy override CSS">
+            <span class="copy-label">↗ copy</span>
+          </button>
+        </div>
+        <pre
+          id="code-override"
+          class="codeblock jds-code"
+        ><code><span class="tk-comment">/* Path A: override JDS semantic tokens. JDS unchanged. */</span>
+<span class="tk-punct">:root,</span>
+<span class="tk-punct">[data-theme="dark"] {</span>
+  --jds-accent-primary:    <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
+  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>224, 108, 117, 0.12<span class="tk-punct">);</span>
+  --jds-border-focus:      <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
+  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>224, 108, 117, 0.35<span class="tk-punct">);</span>
+  --jds-syntax-function:   <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
+<span class="tk-punct">}</span>
+<span class="tk-punct">[data-theme="light"] {</span>
+  --jds-accent-primary:    <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
+  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>197, 48, 48, 0.10<span class="tk-punct">);</span>
+  --jds-border-focus:      <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
+  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>197, 48, 48, 0.30<span class="tk-punct">);</span>
+  --jds-syntax-function:   <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
+<span class="tk-punct">}</span></code></pre>
+      </div>
+    </section>
+
+    <footer
+      style="
+        padding-top: var(--jds-space-6);
+        border-top: 1px solid var(--jds-border);
+        margin-top: var(--jds-space-9);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--jds-space-4);
+        flex-wrap: wrap;
+      "
+    >
+      <span class="jds-small" style="color: var(--jds-fg3)">
+        <span class="jds-mono">@jekwwer/jds</span> · examples/override-primary
+      </span>
+      <a class="jds-small" style="color: var(--jds-fg3); text-decoration: none" href="../hello-world/">← hello-world</a>
+    </footer>
+
+    <script>
+      const html = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+      const text = document.getElementById('theme-text');
+
+      function applyTheme(theme) {
+        html.dataset.theme = theme;
+        icon.textContent = theme === 'dark' ? '☀' : '☾';
+        text.textContent = theme === 'dark' ? 'light' : 'dark';
+      }
+
+      // Use a separate localStorage key from hello-world so toggling doesn't sync between examples.
+      const stored = localStorage.getItem('jds-override-theme');
+      if (stored === 'dark' || stored === 'light') applyTheme(stored);
+      else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+      else applyTheme('dark');
+
+      toggle.addEventListener('click', () => {
+        const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem('jds-override-theme', next);
+      });
+
+      document.querySelectorAll('.copy-btn[data-copy-target]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const target = document.querySelector(btn.dataset.copyTarget);
+          if (!target) return;
+          const label = btn.querySelector('.copy-label');
+          const original = label.textContent;
+          try {
+            await navigator.clipboard.writeText(target.textContent.trim());
+            label.textContent = '✓ copied';
+            btn.classList.add('is-copied');
+          } catch {
+            label.textContent = '✗ failed';
+          }
+          setTimeout(() => {
+            label.textContent = original;
+            btn.classList.remove('is-copied');
+          }, 1200);
+        });
+      });
+    </script>
+  </body>
+</html>

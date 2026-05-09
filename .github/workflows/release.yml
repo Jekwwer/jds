@@ -1,0 +1,53 @@
+name: release
+
+on:
+  workflow_run:
+    workflows: ['ci']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {} # deny by default
+
+concurrency:
+  group: release # semantic-release is stateful: serialize all releases
+  cancel-in-progress: false # half-finished release leaves repo inconsistent
+
+jobs:
+  release:
+    if: >-
+      ${{ github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # semantic-release tags + commits CHANGELOG, dist/, badges/
+      issues: write # @semantic-release/github successComment on closed issues
+      pull-requests: write # @semantic-release/github successComment on merged PRs
+      # id-token: write      # V1.0-FLIP: needed for OIDC: trusted publishing (@semantic-release/npm) + build attestations
+      # attestations: write  # V1.0-FLIP: pairs with actions/attest-build-provenance step (SLSA build provenance)
+    steps:
+      - name: checkout-code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0 # semantic-release reads full history
+          persist-credentials: false # semantic-release embeds token in push URL
+
+      - name: setup-node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: install-node-dependencies
+        run: npm ci
+
+      - name: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # V1.0-FLIP: uncomment when npmPublish flips
+        run: npm run release

@@ -1,0 +1,42 @@
+# Jekwwer Design System (JDS) — canonical GitHub label set
+# Generated from dist/tokens.flat.json — DO NOT EDIT.
+# Edit scripts/build-labels.mjs and run `npm run build` to regenerate.
+
+labels:
+  - name: feat
+    color: "98c379"
+    description: "New feature or capability"
+    aliases:
+      - feature
+      - enhancement
+  - name: fix
+    color: "e06c75"
+    description: "Bug fix"
+    aliases:
+      - bug
+  - name: docs
+    color: "61afef"
+    description: "Documentation change, no code"
+    aliases:
+      - documentation
+  - name: refactor
+    color: "56b6c2"
+    description: "Restructure with no behavior change"
+  - name: chore
+    color: "3b4654"
+    description: "Routine maintenance"
+  - name: breaking
+    color: "d19a66"
+    description: "Backwards-incompatible change"
+  - name: wip
+    color: "e5c07b"
+    description: "Work in progress"
+  - name: blocked
+    color: "c53030"
+    description: "Stalled"
+  - name: good first issue
+    color: "c678dd"
+    description: "Good for newcomers"
+  - name: duplicate
+    color: "8591a0"
+    description: "Duplicate of another issue"

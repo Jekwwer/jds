@@ -1,0 +1,21 @@
+# JDS labels sync — drop into your repo at .github/workflows/sync-jds-labels.yml.
+# Calls Jekwwer/jds reusable workflow weekly + on-demand.
+#
+# ADDITIVE sync: only JDS canonical labels are touched; YOUR other labels
+# (e.g., `python`, `javascript`) are LEFT UNTOUCHED. Safe to drop in.
+#
+# Pin to a tag once JDS tags one — replace `@main` below with `@vX.Y.Z`.
+
+name: Sync JDS labels
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # weekly, Sunday 00:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+
+jobs:
+  sync:
+    uses: Jekwwer/jds/.github/workflows/sync-labels.yml@main

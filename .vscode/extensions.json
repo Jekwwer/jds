@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "arahata.linter-actionlint",
+    "DavidAnson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker",
+    "stylelint.vscode-stylelint"
+  ]
+}

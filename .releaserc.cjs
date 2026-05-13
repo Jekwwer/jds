@@ -13,6 +13,7 @@ module.exports = {
           { type: 'feat', release: 'minor' },
           { type: 'security', release: 'patch' },
           { type: 'fix', release: 'patch' },
+          { type: 'fix', scope: 'examples', release: false },
           { type: 'perf', release: 'patch' },
           // revert: handled by semantic-release auto-cancel (pairs with reverted commit, excluded from release)
           { type: 'deps', release: 'patch' },

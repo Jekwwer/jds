@@ -148,6 +148,19 @@
       section:first-of-type {
         margin-top: var(--jds-space-7);
       }
+      .section-tag {
+        display: block;
+        margin-bottom: var(--jds-space-3);
+      }
+      .section-tag::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 1px;
+        background: var(--jds-accent-primary);
+        vertical-align: middle;
+        margin-right: var(--jds-space-2);
+      }
 
       /* ----- Buttons ------------------------------------------ */
       .button {
@@ -251,17 +264,14 @@
         border-bottom: 0;
         border-radius: var(--jds-radius-md) var(--jds-radius-md) 0 0;
       }
-      .codeblock-bar + .codeblock {
-        border-radius: 0 0 var(--jds-radius-md) var(--jds-radius-md);
-      }
-
       .codeblock {
         background: var(--jds-bg-sunken);
         border: 1px solid var(--jds-border);
-        border-radius: var(--jds-radius-md);
+        border-radius: 0 0 var(--jds-radius-md) var(--jds-radius-md);
         padding: var(--jds-space-4);
         overflow-x: auto;
         line-height: var(--jds-lh-code);
+        margin: 0;
       }
 
       .lang-tag {
@@ -271,6 +281,12 @@
         background: var(--jds-accent-primary-bg);
         padding: 1px 6px;
         border-radius: var(--jds-radius-xs);
+      }
+      .file-tag {
+        color: var(--jds-fg3);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        margin-left: var(--jds-space-2);
       }
 
       .copy-btn {
@@ -340,7 +356,7 @@
     </p>
 
     <section>
-      <span class="jds-label">Palette hues</span>
+      <span class="jds-label section-tag">Palette hues</span>
       <div class="palette-grid" style="margin-top: var(--jds-space-3)">
         <div class="palette-chip">
           <div class="swatch" style="background: var(--jds-red)"></div>
@@ -377,9 +393,9 @@
     </section>
 
     <section>
-      <span class="jds-label">Demonstration</span>
+      <span class="jds-label section-tag">Demonstration</span>
       <div class="card" style="margin-top: var(--jds-space-3)">
-        <h3 class="jds-h4" style="color: var(--jds-accent-primary)">Primary is now red</h3>
+        <h2 class="jds-h4" style="color: var(--jds-accent-primary)">Primary is now red</h2>
         <p class="jds-p" style="margin-top: var(--jds-space-2)">
           All five overridden tokens cascade down: button background, card title, focus ring, code "function" color, and
           the cursor in the header.
@@ -393,15 +409,10 @@
     </section>
 
     <section>
-      <span class="jds-label">The override (drop into your project's CSS)</span>
+      <span class="jds-label section-tag">The override (drop into your project's CSS)</span>
       <div style="margin-top: var(--jds-space-3)">
         <div class="codeblock-bar">
-          <span
-            ><span class="lang-tag">css</span>
-            <span class="jds-code" style="color: var(--jds-fg3); margin-left: var(--jds-space-2)"
-              >· override.css</span
-            ></span
-          >
+          <span><span class="lang-tag">css</span><span class="file-tag">· override.css</span></span>
           <button class="copy-btn" data-copy-target="#code-override" aria-label="Copy override CSS">
             <span class="copy-label">↗ copy</span>
           </button>

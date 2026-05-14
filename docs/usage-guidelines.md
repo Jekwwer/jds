@@ -2,9 +2,9 @@
 
 Foundational rules for any surface built with JDS — voice, accessibility, layout. Read before composing a new page.
 
-> **v0.1 surface.** This doc covers rules that apply to JDS at v0.1 (tokens + base CSS). Component-specific rules (when
-> to use Button vs Toggle, Modal a11y, etc.) land here as those components ship — see [components][COMPONENTS] and the
-> [Roadmap][ROADMAP] in the README.
+> **v0.2 surface.** This doc covers rules that apply to JDS at v0.2 (tokens + base CSS + `.jds-accent-outline`).
+> Component-specific rules (when to use Button vs Toggle, Modal a11y, etc.) land here as those components ship — see
+> [components][COMPONENTS] and the [Roadmap][ROADMAP] in the README.
 
 ---
 
@@ -76,9 +76,39 @@ JDS targets WCAG 2.1 AA across both modes; AAA where reasonable.
 
 - All `--jds-fg1` ↔ `--jds-bg` and `--jds-fg1` ↔ `--jds-bg-raised` pairs pass AAA (≥7:1)
 - All `--jds-fg2` ↔ `--jds-bg` pairs pass AA (≥4.5:1)
-- Accent text (`--jds-accent-primary` etc.) only at `font-size ≥ 13px` on `--jds-bg` — at smaller sizes it falls below
-  3:1 on tinted-bg surfaces
 - Never rely on color alone — every status carries a label, glyph, or position
+- Decorative tokens are WCAG 1.4.3 exempt: `--jds-fg4` (inactive UI), `--jds-scrollbar-{thumb,track}`,
+  `--jds-border-subtle`, `--jds-bg-selected`, `--jds-accent-*-bg`. axe failures on these are expected
+- `--jds-{green,yellow}-light` are decorative-only; use `--jds-{green,yellow}-text-light` (or semantic
+  `--jds-accent-success` / `--jds-accent-warning`) for text in light mode
+
+#### Muted-text contract
+
+- `--jds-fg1`: primary content (AAA against `--jds-bg`, `--jds-bg-raised`)
+- `--jds-fg2`: secondary content (AA against `--jds-bg`, `--jds-bg-raised`)
+- `--jds-fg3`: tertiary content — labels, captions, placeholder text, code comments (AA against `--jds-bg`,
+  `--jds-bg-raised`, `--jds-bg-sunken`, both modes)
+- `--jds-fg4`: inactive/disabled UI only. WCAG-exempt. Never use for readable text
+- Stop at `--jds-fg3` for any readable text
+- For text quieter than `--jds-fg3`, subordinate typographically — `font-style: italic`, lighter weight, smaller size,
+  or desaturation. Don't drop to a lower step in the ink ramp
+- axe-core fails any text-on-surface combo below 4.5:1. Valid responses: raise to `--jds-fg3`+, or use one of the
+  decorative/incidental-UI tokens listed under "Color contrast" above
+
+#### Accent surfaces — two-pattern rule
+
+Accent-colored text never sits on accent-tinted backgrounds. `--jds-accent-*-bg` tokens are decorative regional fills
+only. Pick one pattern when a surface carries an accent:
+
+- **Solid** (high emphasis: pressed, current, primary).
+  `background: var(--jds-accent-primary); color: var(--jds-fg-inverse);` no border. Use for segmented-control pressed,
+  current tab, primary button, alert/callout label chip, code-block language tag
+- **Outline** (low emphasis: static indicator). `background: var(--jds-bg)` (or `--jds-bg-raised` if nested in a raised
+  surface — must match parent), `border: 1px solid var(--jds-accent-primary); color: var(--jds-accent-primary);` Use for
+  badges, version tags, sidebar active item, post-card meta tags. Encapsulated by `.jds-accent-outline`
+
+Both patterns axe-pass AA for all 7 hues × 2 modes. `--jds-accent-*-bg` survives for decorative regional fills only
+(Hero radial, Alert/Callout outer region with neutral-foreground body, `::selection` highlight)
 
 ### Focus
 

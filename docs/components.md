@@ -2,11 +2,12 @@
 
 Spec reference for shipped JDS class API. Matches `dist/tokens.css` + `src/base.css` at the version in this repo.
 
-> **v0.1 surface.** Only typography utility classes ship at v0.1. Component CSS (buttons, cards, inputs, terminal, etc.)
-> lands incrementally per the [Roadmap][ROADMAP] in the README. This doc grows with each release.
+> **v0.2 surface.** Typography utility classes + `.jds-accent-outline` accent surface ship as the JDS class API.
+> Component CSS (buttons, cards, inputs, terminal, etc.) lands incrementally per the [Roadmap][ROADMAP] in the README.
+> This doc grows with each release.
 >
-> **Examples** (`examples/hello-world/`, `examples/override-primary/`) demo JDS in HTML. They consume JDS via
-> `var(--jds-*)` tokens and the typography utility classes documented here. They also use **local CSS** for visual
+> **Examples** (`examples/hello-world/`, `examples/multi-accent/`, `examples/override-primary/`) demo JDS in HTML. They
+> consume JDS via `var(--jds-*)` tokens and the utility classes documented here. They also use **local CSS** for visual
 > elements not yet shipped as canonical JDS components (buttons, theme toggle, etc.) — those are demo-only, not part of
 > JDS's class API. As components land in upcoming v0.x releases, examples migrate to canonical classes.
 
@@ -175,6 +176,38 @@ OpenType `calt` + `liga` features enabled (ligatures + contextual alternates).
 
 ---
 
+## Accent surfaces
+
+Utility classes for accent-colored surfaces. The Solid pattern (`--jds-accent-primary` fill + `--jds-fg-inverse` text)
+stays inline — too rare across JDS surfaces to earn a class. The Outline pattern ships as a class because it's the
+dominant accent chip / tag / badge style across the JDS examples and the blog look-spec.
+
+### `.jds-accent-outline`
+
+**Purpose.** Accent text + accent border on the page background. Use for status badges, language tags, inline category
+markers — anywhere the surface should signal an accent without flooding the rectangle in fill color.
+
+**Class API.**
+
+| token            | binding                               |
+| ---------------- | ------------------------------------- |
+| `background`     | `var(--jds-bg)`                       |
+| `color`          | `var(--jds-accent-primary)`           |
+| `border`         | `1px solid var(--jds-accent-primary)` |
+| `border-radius`  | `var(--jds-radius-sm)`                |
+| `:focus-visible` | `box-shadow: var(--jds-shadow-focus)` |
+
+**HTML example.**
+
+```html
+<span class="jds-accent-outline">v0.2</span>
+```
+
+Pairs with the Solid + Outline pattern rule in [`docs/usage-guidelines.md`][USAGE_GUIDELINES] "Accent surfaces —
+two-pattern rule".
+
+---
+
 ## Base layer (no class — applied via tag selectors)
 
 Loaded with `src/base.css`. These aren't classes; they're sensible defaults applied automatically when the file is
@@ -213,4 +246,5 @@ class API will be documented here as it ships.
 
 [NOTICE]: ../NOTICE.md
 [ROADMAP]: ../README.md#roadmap
+[USAGE_GUIDELINES]: usage-guidelines.md
 [USE]: ../README.md#use

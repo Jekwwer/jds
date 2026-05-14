@@ -28,6 +28,9 @@
       }
 
       body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
         max-width: var(--jds-layout-content-max);
         margin: 0 auto;
         padding: var(--jds-space-7) var(--jds-space-6);
@@ -327,20 +330,22 @@
         border-radius: var(--jds-radius-sm);
         border: 1px solid;
       }
+      /* Outline pattern per usage-guidelines.md "Color contrast".
+         Parent is .deploy-panel = bg-raised; chip bg matches. */
       .badge-success {
         color: var(--jds-accent-success);
-        background: var(--jds-accent-success-bg);
-        border-color: color-mix(in srgb, var(--jds-accent-success) 30%, transparent);
+        background: var(--jds-bg-raised);
+        border-color: var(--jds-accent-success);
       }
       .badge-warning {
         color: var(--jds-accent-warning);
-        background: var(--jds-accent-warning-bg);
-        border-color: color-mix(in srgb, var(--jds-accent-warning) 30%, transparent);
+        background: var(--jds-bg-raised);
+        border-color: var(--jds-accent-warning);
       }
       .badge-info {
         color: var(--jds-accent-info);
-        background: var(--jds-accent-info-bg);
-        border-color: color-mix(in srgb, var(--jds-accent-info) 30%, transparent);
+        background: var(--jds-bg-raised);
+        border-color: var(--jds-accent-info);
       }
       .badge-neutral {
         color: var(--jds-fg2);
@@ -381,12 +386,15 @@
         margin: 0;
       }
 
+      /* Outline pattern per usage-guidelines.md "Color contrast". Parent is
+         .codeblock-bar = bg-raised; tag bg matches. */
       .lang-tag {
         font-family: var(--jds-font-mono);
         font-size: var(--jds-fs-xs);
         color: var(--jds-accent-primary);
-        background: var(--jds-accent-primary-bg);
-        padding: 1px 6px;
+        background: var(--jds-bg-raised);
+        border: 1px solid var(--jds-accent-primary);
+        padding: 0 5px;
         border-radius: var(--jds-radius-xs);
       }
       .file-tag {
@@ -451,6 +459,33 @@
       .install-stack > * + * {
         margin-top: var(--jds-space-3);
       }
+
+      /* ----- Footer ------------------------------------------ */
+      footer {
+        margin-top: auto;
+        padding-top: var(--jds-space-5);
+        border-top: 1px solid var(--jds-border);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        color: var(--jds-fg3);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--jds-space-4);
+        flex-wrap: wrap;
+      }
+      footer a {
+        color: var(--jds-fg3);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--jds-fg2);
+      }
+      footer a:focus-visible {
+        outline: none;
+        box-shadow: var(--jds-shadow-focus);
+        border-radius: var(--jds-radius-xs);
+      }
     </style>
   </head>
   <body>
@@ -474,7 +509,7 @@
       <a class="button button-primary" href="https://github.com/Jekwwer/jds" target="_blank" rel="noopener noreferrer"
         >Get started ↗</a
       >
-      <a class="button button-ghost" href="../override-primary/" rel="next">See override demo →</a>
+      <a class="button button-ghost" href="../multi-accent/" rel="next">See multi-accent demo →</a>
     </div>
 
     <section>
@@ -648,24 +683,9 @@
       </div>
     </section>
 
-    <footer
-      style="
-        padding-top: var(--jds-space-6);
-        border-top: 1px solid var(--jds-border);
-        margin-top: var(--jds-space-9);
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: var(--jds-space-4);
-        flex-wrap: wrap;
-      "
-    >
-      <span class="jds-small" style="color: var(--jds-fg3)">
-        <span class="jds-mono">@jekwwer/jds</span> · examples/hello-world
-      </span>
-      <a class="jds-small" style="color: var(--jds-fg3); text-decoration: none" href="../override-primary/"
-        >override-primary →</a
-      >
+    <footer>
+      <span>@jekwwer/jds · examples/hello-world</span>
+      <a href="../multi-accent/">multi-accent →</a>
     </footer>
 
     <script>

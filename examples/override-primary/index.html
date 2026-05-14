@@ -10,31 +10,41 @@
     <link rel="stylesheet" href="../../src/base.css" />
 
     <style>
-      /* ----- Path A: semantic token override ---------------- */
-      /* The only code overriding JDS for a custom primary. JDS
-         itself is unchanged. Drop into any project's CSS — primary
-         swaps from blue → red.
+      /* ----- Semantic token override ------------------------- */
+      /* The only code overriding JDS for a custom primary.
+         JDS itself is unchanged. Drop into any project's CSS — primary
+         swaps from blue → custom hex (this demo: teal).
 
-         Pattern works for any of the 7 JDS palette hues. Each ships
-         as --jds-<hue> (dark) and --jds-<hue>-light (light).
+         Use this pattern for: arbitrary brand hex, or rebinds beyond
+         what [data-accent] covers (e.g., --jds-syntax-function
+         below). For JDS's 7 built-in hues, prefer
+         [data-accent="<hue>"] — see multi-accent demo.
 
          Tokens overridden: --jds-accent-primary,
          --jds-accent-primary-bg, --jds-border-focus,
-         --jds-shadow-focus, --jds-syntax-function. */
+         --jds-shadow-focus, --jds-syntax-function.
+
+         Specificity note: this :root override is (0,1,0) and LOSES
+         to JDS's [data-accent="<hue>"] blocks (0,2,0). To coexist
+         with attribute switching, scope your override:
+           :root:not([data-accent]) { ... }
+         This demo doesn't set [data-accent] on <html>, so the simple
+         :root form is sufficient. See README "Theming" for the full
+         picture. */
       :root,
       [data-theme='dark'] {
-        --jds-accent-primary: var(--jds-red);
-        --jds-accent-primary-bg: rgba(224, 108, 117, 0.12);
-        --jds-border-focus: var(--jds-red);
-        --jds-shadow-focus: 0 0 0 3px rgba(224, 108, 117, 0.35);
-        --jds-syntax-function: var(--jds-red);
+        --jds-accent-primary: #14b8a6;
+        --jds-accent-primary-bg: rgba(20, 184, 166, 0.12);
+        --jds-border-focus: #14b8a6;
+        --jds-shadow-focus: 0 0 0 3px rgba(20, 184, 166, 0.35);
+        --jds-syntax-function: #14b8a6;
       }
       [data-theme='light'] {
-        --jds-accent-primary: var(--jds-red-light);
-        --jds-accent-primary-bg: rgba(197, 48, 48, 0.1);
-        --jds-border-focus: var(--jds-red-light);
-        --jds-shadow-focus: 0 0 0 3px rgba(197, 48, 48, 0.3);
-        --jds-syntax-function: var(--jds-red-light);
+        --jds-accent-primary: #0f766e;
+        --jds-accent-primary-bg: rgba(15, 118, 110, 0.1);
+        --jds-border-focus: #0f766e;
+        --jds-shadow-focus: 0 0 0 3px rgba(15, 118, 110, 0.3);
+        --jds-syntax-function: #0f766e;
       }
 
       /* ----- Reset & layout ----------------------------------- */
@@ -55,6 +65,9 @@
       }
 
       body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
         max-width: var(--jds-layout-content-max);
         margin: 0 auto;
         padding: var(--jds-space-7) var(--jds-space-6);
@@ -274,12 +287,15 @@
         margin: 0;
       }
 
+      /* Outline pattern per usage-guidelines.md "Color contrast". Parent is
+         .codeblock-bar = bg-raised; tag bg matches. */
       .lang-tag {
         font-family: var(--jds-font-mono);
         font-size: var(--jds-fs-xs);
         color: var(--jds-accent-primary);
-        background: var(--jds-accent-primary-bg);
-        padding: 1px 6px;
+        background: var(--jds-bg-raised);
+        border: 1px solid var(--jds-accent-primary);
+        padding: 0 5px;
         border-radius: var(--jds-radius-xs);
       }
       .file-tag {
@@ -335,6 +351,33 @@
       .stack > * + * {
         margin-top: var(--jds-space-3);
       }
+
+      /* ----- Footer ------------------------------------------ */
+      footer {
+        margin-top: auto;
+        padding-top: var(--jds-space-5);
+        border-top: 1px solid var(--jds-border);
+        font-family: var(--jds-font-mono);
+        font-size: var(--jds-fs-xs);
+        color: var(--jds-fg3);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--jds-space-4);
+        flex-wrap: wrap;
+      }
+      footer a {
+        color: var(--jds-fg3);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--jds-fg2);
+      }
+      footer a:focus-visible {
+        outline: none;
+        box-shadow: var(--jds-shadow-focus);
+        border-radius: var(--jds-radius-xs);
+      }
     </style>
   </head>
   <body>
@@ -349,10 +392,11 @@
       </button>
     </header>
 
-    <h1 class="jds-h1">Same JDS, in red.</h1>
+    <h1 class="jds-h1">Same JDS, in teal.</h1>
     <p class="jds-lead">
-      Five semantic tokens, two modes, zero patches to JDS. Cursor, primary button, focus ring, syntax 'function' — all
-      flip blue → red.
+      Five semantic tokens, two modes, zero patches. Cursor, primary button, focus ring, syntax 'function' flip blue →
+      teal. For JDS's 7 built-in hues at runtime, use <code class="jds-code">[data-accent]</code> instead — see
+      <a href="../multi-accent/" style="color: var(--jds-accent-primary)">multi-accent demo</a>.
     </p>
 
     <section>
@@ -395,7 +439,7 @@
     <section>
       <span class="jds-label section-tag">Demonstration</span>
       <div class="card" style="margin-top: var(--jds-space-3)">
-        <h2 class="jds-h4" style="color: var(--jds-accent-primary)">Primary is now red</h2>
+        <h2 class="jds-h4" style="color: var(--jds-accent-primary)">Primary is now teal</h2>
         <p class="jds-p" style="margin-top: var(--jds-space-2)">
           All five overridden tokens cascade down: button background, card title, focus ring, code "function" color, and
           the cursor in the header.
@@ -403,7 +447,7 @@
         <div style="margin-top: var(--jds-space-4)">
           <button class="button button-primary">Run build</button>
           <button class="button button-secondary">Cancel</button>
-          <button class="button button-ghost">Tab to me — focus ring is red →</button>
+          <button class="button button-ghost">Tab to me — focus ring is teal →</button>
         </div>
       </div>
     </section>
@@ -420,41 +464,28 @@
         <pre
           id="code-override"
           class="codeblock jds-code"
-        ><code><span class="tk-comment">/* Path A: override JDS semantic tokens. JDS unchanged. */</span>
+        ><code><span class="tk-comment">/* Override JDS semantic tokens. JDS unchanged. */</span>
 <span class="tk-punct">:root,</span>
 <span class="tk-punct">[data-theme="dark"] {</span>
-  --jds-accent-primary:    <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
-  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>224, 108, 117, 0.12<span class="tk-punct">);</span>
-  --jds-border-focus:      <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
-  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>224, 108, 117, 0.35<span class="tk-punct">);</span>
-  --jds-syntax-function:   <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red<span class="tk-punct">);</span>
+  --jds-accent-primary:    <span class="tk-string">#14b8a6</span><span class="tk-punct">;</span>
+  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>20, 184, 166, 0.12<span class="tk-punct">);</span>
+  --jds-border-focus:      <span class="tk-string">#14b8a6</span><span class="tk-punct">;</span>
+  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>20, 184, 166, 0.35<span class="tk-punct">);</span>
+  --jds-syntax-function:   <span class="tk-string">#14b8a6</span><span class="tk-punct">;</span>
 <span class="tk-punct">}</span>
 <span class="tk-punct">[data-theme="light"] {</span>
-  --jds-accent-primary:    <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
-  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>197, 48, 48, 0.10<span class="tk-punct">);</span>
-  --jds-border-focus:      <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
-  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>197, 48, 48, 0.30<span class="tk-punct">);</span>
-  --jds-syntax-function:   <span class="tk-function">var</span><span class="tk-punct">(</span>--jds-red-light<span class="tk-punct">);</span>
+  --jds-accent-primary:    <span class="tk-string">#0f766e</span><span class="tk-punct">;</span>
+  --jds-accent-primary-bg: <span class="tk-function">rgba</span><span class="tk-punct">(</span>15, 118, 110, 0.10<span class="tk-punct">);</span>
+  --jds-border-focus:      <span class="tk-string">#0f766e</span><span class="tk-punct">;</span>
+  --jds-shadow-focus:      0 0 0 3px <span class="tk-function">rgba</span><span class="tk-punct">(</span>15, 118, 110, 0.30<span class="tk-punct">);</span>
+  --jds-syntax-function:   <span class="tk-string">#0f766e</span><span class="tk-punct">;</span>
 <span class="tk-punct">}</span></code></pre>
       </div>
     </section>
 
-    <footer
-      style="
-        padding-top: var(--jds-space-6);
-        border-top: 1px solid var(--jds-border);
-        margin-top: var(--jds-space-9);
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: var(--jds-space-4);
-        flex-wrap: wrap;
-      "
-    >
-      <span class="jds-small" style="color: var(--jds-fg3)">
-        <span class="jds-mono">@jekwwer/jds</span> · examples/override-primary
-      </span>
-      <a class="jds-small" style="color: var(--jds-fg3); text-decoration: none" href="../hello-world/">← hello-world</a>
+    <footer>
+      <span>@jekwwer/jds · examples/override-primary</span>
+      <a href="../multi-accent/">← multi-accent</a>
     </footer>
 
     <script>

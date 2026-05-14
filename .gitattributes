@@ -50,11 +50,8 @@ package-lock.json   -diff
 # === Metadata ===
 
 # --- GitHub linguist: generated outputs ---
-package-lock.json   linguist-generated
-dist/*              linguist-generated
-badges/*            linguist-generated
-
-# --- Export ignore (excluded from `git archive` source zips) ---
-# Tracked but internal working docs — not part of the public source archive.
-TODO.md             export-ignore
-HANDOFF.md          export-ignore
+badges/*                  linguist-generated
+dist/*                    linguist-generated
+tests/*-snapshots/**      linguist-generated
+CHANGELOG.md              linguist-generated
+package-lock.json         linguist-generated

@@ -10,3 +10,5 @@ if ! git diff --quiet -- dist/ badges/; then
 fi
 
 echo "✓ dist/ + badges/ match a fresh build"
+
+npm run test:visual

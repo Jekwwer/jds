@@ -66,6 +66,13 @@ secrets/
 # Generic tool cache dir
 .cache/
 
+# ── Test artifacts ──────────────────────────────────────────────────────────
+# Playwright per-run output (committed baselines live in tests/*-snapshots/).
+playwright-report/
+test-results/
+.playwright/
+blob-report/
+
 # ── Tracked overrides ──────────────────────────────────────────────────────
 # `dist/` is committed (jsdelivr + GitHub Pages serve it directly)
 !dist/

@@ -3,3 +3,7 @@ CHANGELOG.md
 package-lock.json
 dist/
 badges/
+
+# Project-canonical compact one-liner format for token leaves;
+# prettier's default JSON expansion makes diffs unreviewable. Edit by hand.
+export/tokens.json

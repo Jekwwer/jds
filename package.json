@@ -33,7 +33,6 @@
   "engines": {
     "node": ">=22 <23"
   },
-  "type": "module",
   "main": "./dist/tokens.css",
   "style": "./dist/tokens.css",
   "exports": {
@@ -68,6 +67,8 @@
     "spell": "cspell . --cache",
     "format": "prettier --check .",
     "format-fix": "prettier --write .",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
     "release": "semantic-release",
     "prepare": "husky"
   },
@@ -80,8 +81,10 @@
     "*.md": "markdownlint-cli2 --fix"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@commitlint/cli": "^20.5.3",
     "@commitlint/config-conventional": "^20.5.3",
+    "@playwright/test": "^1.60.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

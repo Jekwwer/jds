@@ -97,6 +97,55 @@ function shadowToCSS(value) {
     .join(', ');
 }
 
+// Per-accent block helpers — runtime accent switching via [data-accent="<hue>"].
+const HUES = ['red', 'green', 'yellow', 'blue', 'purple', 'cyan', 'orange'];
+
+function hexToRgb(hex) {
+  const m = hex.replace('#', '').match(/.{2}/g);
+  return [parseInt(m[0], 16), parseInt(m[1], 16), parseInt(m[2], 16)];
+}
+
+function rgba(rgb, alpha) {
+  return `rgba(${rgb.join(', ')}, ${alpha})`;
+}
+
+function getHueHex(dictionary, hueKey) {
+  const t = dictionary.allTokens.find(
+    (tok) =>
+      tok.path.length === 3 &&
+      tok.path[0] === 'palette' &&
+      tok.path[1] === 'accent' &&
+      tok.path[2] === hueKey,
+  );
+  if (!t) throw new Error(`Missing palette.accent.${hueKey} in tokens.json`);
+  return t.$value;
+}
+
+// Hues whose -light hex fails WCAG AA on white;
+// light-mode [data-accent] uses -text-light variant instead.
+const LIGHT_TEXT_VARIANT_HUES = ['green', 'yellow'];
+
+function accentBlockBody(dictionary, hue, mode) {
+  let hueKey;
+  if (mode === 'light') {
+    hueKey = LIGHT_TEXT_VARIANT_HUES.includes(hue)
+      ? `${hue}-text-light`
+      : `${hue}-light`;
+  } else {
+    hueKey = hue;
+  }
+  const hex = getHueHex(dictionary, hueKey);
+  const rgb = hexToRgb(hex);
+  const bgAlpha = mode === 'light' ? 0.1 : 0.12;
+  const focusAlpha = mode === 'light' ? 0.3 : 0.35;
+  return [
+    `  --jds-accent-primary: ${hex};`,
+    `  --jds-accent-primary-bg: ${rgba(rgb, bgAlpha)};`,
+    `  --jds-border-focus: ${hex};`,
+    `  --jds-shadow-focus: 0 0 0 3px ${rgba(rgb, focusAlpha)};`,
+  ].join('\n');
+}
+
 function renderToken(token) {
   const isShadow = token.path[0] === 'shadow';
   const value = isShadow ? shadowToCSS(token.$value) : token.$value;
@@ -139,6 +188,23 @@ StyleDictionary.registerFormat({
     for (const t of buckets.light) lines.push(renderToken(t));
     lines.push('}');
     lines.push('');
+
+    // Per-accent blocks — runtime accent switching.
+    // Syntax tokens (--jds-syntax-*) intentionally NOT rebound.
+    for (const hue of HUES) {
+      lines.push(`:root[data-accent="${hue}"],`);
+      lines.push(`[data-theme="dark"][data-accent="${hue}"] {`);
+      lines.push(accentBlockBody(dictionary, hue, 'dark'));
+      lines.push('}');
+      lines.push('');
+    }
+
+    for (const hue of HUES) {
+      lines.push(`[data-theme="light"][data-accent="${hue}"] {`);
+      lines.push(accentBlockBody(dictionary, hue, 'light'));
+      lines.push('}');
+      lines.push('');
+    }
 
     return lines.join('\n');
   },

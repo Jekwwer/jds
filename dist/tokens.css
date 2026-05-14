@@ -22,9 +22,11 @@
   --jds-red: #e06c75; /* Keywords, errors, danger */
   --jds-red-light: #c53030; /* Darker variant for light-mode contrast */
   --jds-green: #98c379; /* Strings, success, added */
-  --jds-green-light: #3d8c40; /* Darker variant for light-mode contrast */
+  --jds-green-light: #3d8c40; /* Light-mode variant — decorative only */
+  --jds-green-text-light: #2e7d32; /* Light-mode variant — text-safe */
   --jds-yellow: #e5c07b; /* Classes, warnings, highlight */
-  --jds-yellow-light: #b8860b; /* Darker variant for light-mode contrast */
+  --jds-yellow-light: #b8860b; /* Light-mode variant — decorative only */
+  --jds-yellow-text-light: #806600; /* Light-mode variant — text-safe */
   --jds-blue: #61afef; /* Functions, info, primary */
   --jds-blue-light: #1e6bb8; /* Darker variant for light-mode contrast */
   --jds-purple: #c678dd; /* Operators, special, accent */
@@ -141,7 +143,7 @@
   --jds-syntax-class: #e5c07b;
   --jds-syntax-operator: #c678dd;
   --jds-syntax-builtin: #56b6c2;
-  --jds-syntax-comment: #5a6675;
+  --jds-syntax-comment: #8591a0;
   --jds-syntax-punct: #b4bdc9;
   --jds-scrollbar-thumb: #242c36;
   --jds-scrollbar-track: rgba(0, 0, 0, 0);
@@ -170,9 +172,9 @@
   --jds-border-focus: #1e6bb8;
   --jds-accent-primary: #1e6bb8;
   --jds-accent-primary-bg: rgba(30, 107, 184, 0.1);
-  --jds-accent-success: #3d8c40;
+  --jds-accent-success: #2e7d32;
   --jds-accent-success-bg: rgba(61, 140, 64, 0.1);
-  --jds-accent-warning: #b8860b;
+  --jds-accent-warning: #806600;
   --jds-accent-warning-bg: rgba(184, 134, 11, 0.12);
   --jds-accent-danger: #c53030;
   --jds-accent-danger-bg: rgba(197, 48, 48, 0.1);
@@ -181,13 +183,13 @@
   --jds-accent-special: #8a3fa3;
   --jds-accent-special-bg: rgba(138, 63, 163, 0.1);
   --jds-syntax-keyword: #c53030;
-  --jds-syntax-string: #3d8c40;
+  --jds-syntax-string: #2e7d32;
   --jds-syntax-number: #b7410e;
   --jds-syntax-function: #1e6bb8;
-  --jds-syntax-class: #b8860b;
+  --jds-syntax-class: #806600;
   --jds-syntax-operator: #8a3fa3;
   --jds-syntax-builtin: #0b7285;
-  --jds-syntax-comment: #8591a0;
+  --jds-syntax-comment: #5a6675;
   --jds-syntax-punct: #2d3743;
   --jds-scrollbar-thumb: #b4bdc9;
   --jds-scrollbar-track: rgba(0, 0, 0, 0);
@@ -196,4 +198,109 @@
   --jds-shadow-lg: 0 16px 40px 0 rgba(15, 23, 42, 0.14);
   --jds-shadow-focus: 0 0 0 3px rgba(30, 107, 184, 0.30);
   --jds-shadow-focus-danger: 0 0 0 3px rgba(197, 48, 48, 0.30);
+}
+
+:root[data-accent="red"],
+[data-theme="dark"][data-accent="red"] {
+  --jds-accent-primary: #e06c75;
+  --jds-accent-primary-bg: rgba(224, 108, 117, 0.12);
+  --jds-border-focus: #e06c75;
+  --jds-shadow-focus: 0 0 0 3px rgba(224, 108, 117, 0.35);
+}
+
+:root[data-accent="green"],
+[data-theme="dark"][data-accent="green"] {
+  --jds-accent-primary: #98c379;
+  --jds-accent-primary-bg: rgba(152, 195, 121, 0.12);
+  --jds-border-focus: #98c379;
+  --jds-shadow-focus: 0 0 0 3px rgba(152, 195, 121, 0.35);
+}
+
+:root[data-accent="yellow"],
+[data-theme="dark"][data-accent="yellow"] {
+  --jds-accent-primary: #e5c07b;
+  --jds-accent-primary-bg: rgba(229, 192, 123, 0.12);
+  --jds-border-focus: #e5c07b;
+  --jds-shadow-focus: 0 0 0 3px rgba(229, 192, 123, 0.35);
+}
+
+:root[data-accent="blue"],
+[data-theme="dark"][data-accent="blue"] {
+  --jds-accent-primary: #61afef;
+  --jds-accent-primary-bg: rgba(97, 175, 239, 0.12);
+  --jds-border-focus: #61afef;
+  --jds-shadow-focus: 0 0 0 3px rgba(97, 175, 239, 0.35);
+}
+
+:root[data-accent="purple"],
+[data-theme="dark"][data-accent="purple"] {
+  --jds-accent-primary: #c678dd;
+  --jds-accent-primary-bg: rgba(198, 120, 221, 0.12);
+  --jds-border-focus: #c678dd;
+  --jds-shadow-focus: 0 0 0 3px rgba(198, 120, 221, 0.35);
+}
+
+:root[data-accent="cyan"],
+[data-theme="dark"][data-accent="cyan"] {
+  --jds-accent-primary: #56b6c2;
+  --jds-accent-primary-bg: rgba(86, 182, 194, 0.12);
+  --jds-border-focus: #56b6c2;
+  --jds-shadow-focus: 0 0 0 3px rgba(86, 182, 194, 0.35);
+}
+
+:root[data-accent="orange"],
+[data-theme="dark"][data-accent="orange"] {
+  --jds-accent-primary: #d19a66;
+  --jds-accent-primary-bg: rgba(209, 154, 102, 0.12);
+  --jds-border-focus: #d19a66;
+  --jds-shadow-focus: 0 0 0 3px rgba(209, 154, 102, 0.35);
+}
+
+[data-theme="light"][data-accent="red"] {
+  --jds-accent-primary: #c53030;
+  --jds-accent-primary-bg: rgba(197, 48, 48, 0.1);
+  --jds-border-focus: #c53030;
+  --jds-shadow-focus: 0 0 0 3px rgba(197, 48, 48, 0.3);
+}
+
+[data-theme="light"][data-accent="green"] {
+  --jds-accent-primary: #2e7d32;
+  --jds-accent-primary-bg: rgba(46, 125, 50, 0.1);
+  --jds-border-focus: #2e7d32;
+  --jds-shadow-focus: 0 0 0 3px rgba(46, 125, 50, 0.3);
+}
+
+[data-theme="light"][data-accent="yellow"] {
+  --jds-accent-primary: #806600;
+  --jds-accent-primary-bg: rgba(128, 102, 0, 0.1);
+  --jds-border-focus: #806600;
+  --jds-shadow-focus: 0 0 0 3px rgba(128, 102, 0, 0.3);
+}
+
+[data-theme="light"][data-accent="blue"] {
+  --jds-accent-primary: #1e6bb8;
+  --jds-accent-primary-bg: rgba(30, 107, 184, 0.1);
+  --jds-border-focus: #1e6bb8;
+  --jds-shadow-focus: 0 0 0 3px rgba(30, 107, 184, 0.3);
+}
+
+[data-theme="light"][data-accent="purple"] {
+  --jds-accent-primary: #8a3fa3;
+  --jds-accent-primary-bg: rgba(138, 63, 163, 0.1);
+  --jds-border-focus: #8a3fa3;
+  --jds-shadow-focus: 0 0 0 3px rgba(138, 63, 163, 0.3);
+}
+
+[data-theme="light"][data-accent="cyan"] {
+  --jds-accent-primary: #0b7285;
+  --jds-accent-primary-bg: rgba(11, 114, 133, 0.1);
+  --jds-border-focus: #0b7285;
+  --jds-shadow-focus: 0 0 0 3px rgba(11, 114, 133, 0.3);
+}
+
+[data-theme="light"][data-accent="orange"] {
+  --jds-accent-primary: #b7410e;
+  --jds-accent-primary-bg: rgba(183, 65, 14, 0.1);
+  --jds-border-focus: #b7410e;
+  --jds-shadow-focus: 0 0 0 3px rgba(183, 65, 14, 0.3);
 }

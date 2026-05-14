@@ -159,6 +159,20 @@ body {
   border-radius: var(--jds-radius-sm);
 }
 
+/* ----- Accent surface utilities ------------------------- */
+/* Outline pattern per usage-guidelines.md "Color contrast" — AA-pass for all 7 hues × 2 modes.
+   Solid pattern (--jds-accent-primary bg + --jds-fg-inverse text) is inline-only; no utility. */
+.jds-accent-outline {
+  background: var(--jds-bg);
+  border: 1px solid var(--jds-accent-primary);
+  color: var(--jds-accent-primary);
+  border-radius: var(--jds-radius-sm);
+}
+.jds-accent-outline:focus-visible {
+  outline: none;
+  box-shadow: var(--jds-shadow-focus);
+}
+
 /* scrollbars */
 * {
   scrollbar-width: thin;

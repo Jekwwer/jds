@@ -59,7 +59,7 @@
     "access": "public"
   },
   "scripts": {
-    "build:tokens": "style-dictionary build --config sd.config.js",
+    "build:tokens": "style-dictionary build --config sd.config.mjs",
     "build:labels": "node scripts/build-labels.mjs",
     "build:badges": "node scripts/build-badges.mjs",
     "build": "npm run build:tokens && npm run build:labels && npm run build:badges",

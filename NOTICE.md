@@ -24,7 +24,7 @@ Before redistributing a fork as your own design system, replace:
 
 - All three logo SVGs in `assets/`
 - "Jekwwer Design System" / "JDS" name in `package.json` (`name`, `description`, `author`)
-- Hardcoded brand strings in build scripts: `sd.config.js` (line emitting `dist/tokens.css` header) and
+- Hardcoded brand strings in build scripts: `sd.config.mjs` (line emitting `dist/tokens.css` header) and
   `scripts/build-labels.mjs` (line emitting `dist/labels.yml` header)
 - Brand prose across `README.md`, `NOTICE.md` (this file), and `docs/usage-guidelines.md` if it survives in your fork's
   voice

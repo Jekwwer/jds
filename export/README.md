@@ -9,7 +9,7 @@ regenerate from this file via `npm run build` (Style Dictionary). Don't hand-edi
 
 ## Consuming
 
-For install + use, see [README][README]. To compile your own output from `tokens.json`, see [`sd.config.js`][SD_CONFIG]
+For install + use, see [README][README]. To compile your own output from `tokens.json`, see [`sd.config.mjs`][SD_CONFIG]
 at repo root for the official build pipeline.
 
 For component class API + visual contract, see [`docs/components.md`][COMPONENTS]. For voice / accessibility / layout
@@ -17,5 +17,5 @@ rules, see [`docs/usage-guidelines.md`][USAGE_GUIDELINES].
 
 [COMPONENTS]: ../docs/components.md
 [README]: ../README.md
-[SD_CONFIG]: ../sd.config.js
+[SD_CONFIG]: ../sd.config.mjs
 [USAGE_GUIDELINES]: ../docs/usage-guidelines.md

@@ -1,6 +1,6 @@
 {
   "name": "@jekwwer/jds",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Jekwwer Design System — token-driven, dark+light-symmetric design system. CSS variables + utility classes, no JS runtime. Personal scope, used across Jekwwer projects.",
   "keywords": [
